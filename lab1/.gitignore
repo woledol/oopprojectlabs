@@ -1,10 +1,6 @@
-__pycache__/
-*.py[cod]
-.runtime/
-data/
 .coverage
 .pytest_cache/
 .ruff_cache/
 .venv/
 *.egg-info/
-htmlcov/
+__pycache__/
