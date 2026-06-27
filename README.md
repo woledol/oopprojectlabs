@@ -39,6 +39,14 @@
 python3 -m unittest discover -s tests
 ```
 
+## Документы для сдачи
+
+- [Этап 1. Предметная область](docs/domain.md)
+- [Этап 2. API и договоры](docs/stage2_api_contracts.md)
+- [Краткий список запросов](docs/api.md)
+- [Диаграммы взаимодействия](docs/diagrams.md)
+- [OpenAPI](docs/openapi.yaml)
+
 ## Основной сценарий
 
 1. Пользователь регистрируется на сайте.
