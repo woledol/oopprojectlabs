@@ -53,6 +53,12 @@ class UserRequestHandler(BaseHTTPRequestHandler):
         if path == "/api/history":
             self._handle_history()
             return
+        if path == "/openapi.yaml":
+            self._serve_file(PROJECT_ROOT / "docs" / "openapi.yaml", "text/yaml; charset=utf-8")
+            return
+        if path == "/swagger":
+            self._serve_file(STATIC_DIR / "swagger.html", "text/html; charset=utf-8")
+            return
         self._serve_static(path)
 
     def do_POST(self) -> None:
@@ -180,7 +186,10 @@ class UserRequestHandler(BaseHTTPRequestHandler):
         elif target.suffix == ".js":
             content_type = "text/javascript; charset=utf-8"
 
-        body = resolved_target.read_bytes()
+        self._serve_file(resolved_target, content_type)
+
+    def _serve_file(self, file_path: Path, content_type: str) -> None:
+        body = file_path.read_bytes()
         self.send_response(200)
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))

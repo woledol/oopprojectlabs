@@ -23,7 +23,8 @@ body {
 }
 
 button,
-input {
+input,
+a {
   font: inherit;
 }
 
@@ -60,6 +61,12 @@ h2 {
 .topbar p {
   color: var(--muted);
   margin-top: 6px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .layout,
@@ -130,7 +137,24 @@ button.secondary {
   color: var(--text);
 }
 
+.secondary-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
 button.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.secondary-link:hover {
   border-color: var(--accent);
   color: var(--accent);
 }

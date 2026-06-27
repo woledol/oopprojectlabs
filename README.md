@@ -23,6 +23,7 @@
 После запуска:
 
 - сайт: http://localhost:8000
+- Swagger: http://localhost:8000/swagger
 - проверка сервиса пользователей: http://localhost:8000/health
 - проверка сервиса определения: http://localhost:8001/health
 

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Swagger · Имя по отчеству</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
+    <style>
+      body {
+        margin: 0;
+        background: #f6f7f9;
+      }
+
+      .swagger-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 24px;
+        background: #1e2329;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .swagger-topbar a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .swagger-topbar span {
+        color: #cfd6df;
+      }
+
+      #swagger-ui {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="swagger-topbar">
+      <a href="/">Имя по отчеству</a>
+      <span>Описание запросов</span>
+    </header>
+
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        window.ui = SwaggerUIBundle({
+          url: "/openapi.yaml",
+          dom_id: "#swagger-ui",
+          deepLinking: true,
+          presets: [SwaggerUIBundle.presets.apis],
+        });
+      });
+    </script>
+  </body>
+</html>
