@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: Patronymic Name Project
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: user_service
+  - url: http://localhost:8001
+    description: predictor_service
+paths:
+  /api/register:
+    post:
+      summary: Регистрация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Пользователь создан
+        '400':
+          description: Ошибка проверки данных
+        '409':
+          description: Логин занят
+  /api/login:
+    post:
+      summary: Вход пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Успешный вход
+        '401':
+          description: Ошибка входа
+  /api/me:
+    get:
+      summary: Текущий пользователь
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Данные пользователя
+        '401':
+          description: Нужна авторизация
+  /api/predict:
+    post:
+      summary: Определить имя по отчеству
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictRequest'
+      responses:
+        '200':
+          description: Имя найдено
+        '400':
+          description: Ошибка проверки данных
+        '401':
+          description: Нужна авторизация
+        '422':
+          description: Имя не найдено
+        '503':
+          description: Сервис определения недоступен
+  /api/history:
+    get:
+      summary: История запросов
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: История пользователя
+        '401':
+          description: Нужна авторизация
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    RegisterRequest:
+      type: object
+      required:
+        - fullName
+        - username
+        - password
+      properties:
+        fullName:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    PredictRequest:
+      type: object
+      required:
+        - patronymic
+      properties:
+        patronymic:
+          type: string
+    PredictionResult:
+      type: object
+      properties:
+        patronymic:
+          type: string
+        gender:
+          type: string
+        bestName:
+          type: string
+          nullable: true
+        confidence:
+          type: number

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Имя по отчеству</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar">
+        <div>
+          <h1>Имя по отчеству</h1>
+          <p id="userLabel">Гость</p>
+        </div>
+        <button class="secondary hidden" id="logoutButton" type="button">Выйти</button>
+      </section>
+
+      <section class="layout" id="authView">
+        <form class="panel" id="registerForm">
+          <h2>Регистрация</h2>
+          <label>
+            Имя
+            <input name="fullName" autocomplete="name" required />
+          </label>
+          <label>
+            Логин
+            <input name="username" autocomplete="username" required />
+          </label>
+          <label>
+            Пароль
+            <input name="password" type="password" autocomplete="new-password" required />
+          </label>
+          <button type="submit">Создать аккаунт</button>
+        </form>
+
+        <form class="panel" id="loginForm">
+          <h2>Вход</h2>
+          <label>
+            Логин
+            <input name="username" autocomplete="username" required />
+          </label>
+          <label>
+            Пароль
+            <input name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button type="submit">Войти</button>
+        </form>
+      </section>
+
+      <section class="workspace hidden" id="workspaceView">
+        <form class="panel predict-panel" id="predictForm">
+          <h2>Проверка</h2>
+          <label>
+            Отчество
+            <input name="patronymic" autocomplete="off" required />
+          </label>
+          <button type="submit">Определить</button>
+        </form>
+
+        <section class="panel result-panel" id="resultPanel">
+          <h2>Результат</h2>
+          <div class="empty-state" id="emptyResult">Нет запроса</div>
+          <div class="result hidden" id="resultContent">
+            <div class="result-name" id="resultName"></div>
+            <div class="result-meta" id="resultMeta"></div>
+            <div class="result-reason" id="resultReason"></div>
+          </div>
+        </section>
+
+        <section class="panel history-panel">
+          <h2>История</h2>
+          <ul class="history-list" id="historyList"></ul>
+        </section>
+      </section>
+
+      <div class="toast hidden" id="toast"></div>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
